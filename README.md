@@ -34,3 +34,6 @@ func main() {
 	fmt.Println(err, ticker)
 }
 ~~~
+
+## Inspired
+[https://github.com/toorop/go-bittrex](https://github.com/toorop/go-bittrex)
