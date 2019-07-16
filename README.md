@@ -3,7 +3,7 @@ go-liquid [![GoDoc](https://godoc.org/github.com/egapool/go-liquid?status.svg)](
 
 go-liquid is an implementation of the Liquid (by Quoine) API (public and private) in Golang.
 
-This version implement V1.1 Bittrex API and the new HMAC authentification.
+This version implement v2 Liquid API.
 
 ## Import
 	import "github.com/egapool/go-liquid"
