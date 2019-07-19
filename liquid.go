@@ -46,6 +46,23 @@ func (l *Liquid) GetTicker(productID int) (ticker Ticker, err error) {
 	return
 }
 
+// GetOrderBook is
+func (l *Liquid) GetOrderBook(productID int, full bool) (orderBook OrderBook, err error) {
+	query := "/products/" + strconv.Itoa(productID) + "/price_levels"
+	if full {
+		query += "?full=1"
+	}
+	r, err := l.client.do("GET", query, "", false)
+	if err != nil {
+		return
+	}
+	if err = json.Unmarshal(r, &orderBook); err != nil {
+		return
+	}
+	return
+
+}
+
 // GetAllAccountBalances is used to get all balances that you have.
 func (l *Liquid) GetAllAccountBalances() (balances []Balance, err error) {
 	r, err := l.client.do("GET", "/accounts/balance", "", true)
