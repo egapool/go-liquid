@@ -80,5 +80,5 @@ type Execution struct {
 	Price     string `json:"price"`
 	TakerSide string `json:"taker_side"`
 	MySide    string `json:"my_side"`
-	CreatedAt int    `json:"created_at"`
+	CreatedAt int64  `json:"created_at"`
 }

@@ -63,6 +63,24 @@ func (l *Liquid) GetOrderBook(productID int, full bool) (orderBook OrderBook, er
 
 }
 
+func (l *Liquid) GetExecutions(currencyPairCode string, timestamp int, limit int, page int) (executions Executions, err error) {
+	query := "/executions?currency_pair_code=" + currencyPairCode + "&timestamp=" + strconv.Itoa(timestamp)
+	if limit != 0 {
+		query += "&limit=" + strconv.Itoa(limit)
+	}
+	if page != 0 {
+		query += "&page=" + strconv.Itoa(page)
+	}
+	r, err := l.client.do("GET", query, "", false)
+	if err != nil {
+		return
+	}
+	if err = json.Unmarshal(r, &executions); err != nil {
+		return
+	}
+	return
+}
+
 // GetAllAccountBalances is used to get all balances that you have.
 func (l *Liquid) GetAllAccountBalances() (balances []Balance, err error) {
 	r, err := l.client.do("GET", "/accounts/balance", "", true)
