@@ -63,8 +63,8 @@ func (l *Liquid) GetOrderBook(productID int, full bool) (orderBook OrderBook, er
 
 }
 
-func (l *Liquid) GetExecutions(currencyPairCode string, timestamp int, limit int, page int) (executions Executions, err error) {
-	query := "/executions?currency_pair_code=" + currencyPairCode + "&timestamp=" + strconv.Itoa(timestamp)
+func (l *Liquid) GetExecutions(currencyPairCode string, timestamp int64, limit int, page int) (executions Executions, err error) {
+	query := "/executions?currency_pair_code=" + currencyPairCode + "&timestamp=" + strconv.FormatInt(timestamp, 10)
 	if limit != 0 {
 		query += "&limit=" + strconv.Itoa(limit)
 	}
